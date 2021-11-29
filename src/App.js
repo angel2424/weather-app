@@ -19,7 +19,7 @@ function App() {
     })
 
     if(lat && long !== '') {
-      fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=86891a88da9e40a54208ce0102d260cc`)
+      fetch(`${process.env.REACT_APP_WEATHER_API_URL}/weather?lat=${lat}&lon=${long}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
         .then(res => {
           if(!res.ok) {
             throw new Error('We could not fetch data')
@@ -43,7 +43,7 @@ function App() {
   const station = weather?.weather[0].icon;
 
   const handleSearch = (input) => {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${input}&units=metric&appid=86891a88da9e40a54208ce0102d260cc`)
+    fetch(`${process.env.REACT_APP_WEATHER_API_URL}/weather?q=${input}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
     .then(res => {
       if(!res.ok) {
         throw new Error('We could not fetch data')
